@@ -84,7 +84,7 @@ class RestaurantController {
     const restaurant = await Restaurant.findByPk(request.restaurantId);
 
     if (restaurant.email !== email) {
-      const restaurantExists = await User.findOne({
+      const restaurantExists = await Restaurant.findOne({
         where: { email },
       });
 

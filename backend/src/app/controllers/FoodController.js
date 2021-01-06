@@ -14,6 +14,7 @@ class FoodController {
         'description',
         'ingredients',
         'category',
+        'price',
       ],
       include: {
         model: Restaurant,
@@ -32,6 +33,7 @@ class FoodController {
       ingredients: Yup.string().required(),
       category: Yup.string().required(),
       image_url: Yup.string().required(),
+      price: Yup.number().required(),
     });
 
     if (!schema.isValid(request.body)) {
@@ -81,6 +83,7 @@ class FoodController {
         'description',
         'ingredients',
         'category',
+        'price',
         'createdAt',
         'updatedAt',
       ],
@@ -108,6 +111,7 @@ class FoodController {
       description: Yup.string().required(),
       ingredients: Yup.string().required(),
       category: Yup.string().required(),
+      price: Yup.number().required(),
     });
 
     if (!schema.isValid(request.body)) {
