@@ -107,6 +107,7 @@ export const Footer = styled.footer`
     border: none;
     border-radius: 8px;
 
+    font-weight: bold;
     color: #fff;
     padding: 16px 64px;
 

@@ -1,10 +1,12 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
+import { connect } from 'react-redux';
 import { FiMenu, FiSearch, FiShoppingBag } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import { Container, MenuDiv, SearchInputDiv, UserDiv } from './styles';
 
-function Header() {
+function Header({ cartSize }) {
   return (
     <Container>
       <MenuDiv>
@@ -19,11 +21,13 @@ function Header() {
       <UserDiv>
         <Link to="/cart">
           <FiShoppingBag size={16} color="#F7B90F" />
-          <span>2</span>
+          {cartSize > 0 && <span>{cartSize}</span>}
         </Link>
       </UserDiv>
     </Container>
   );
 }
 
-export default Header;
+export default connect((state) => ({
+  cartSize: state.cart.length,
+}))(Header);
