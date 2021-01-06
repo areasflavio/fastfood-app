@@ -8,6 +8,7 @@ class Food extends Model {
         description: Sequelize.STRING,
         ingredients: Sequelize.STRING,
         category: Sequelize.STRING,
+        image_url: Sequelize.STRING,
       },
       {
         sequelize,

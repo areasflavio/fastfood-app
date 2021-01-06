@@ -7,7 +7,14 @@ import Restaurant from '../models/Restaurant';
 class FoodController {
   async index(request, response) {
     const foods = await Food.findAll({
-      attributes: ['title', 'description', 'ingredients', 'category'],
+      attributes: [
+        'id',
+        'image_url',
+        'title',
+        'description',
+        'ingredients',
+        'category',
+      ],
       include: {
         model: Restaurant,
         as: 'restaurant',
@@ -24,6 +31,7 @@ class FoodController {
       description: Yup.string().required(),
       ingredients: Yup.string().required(),
       category: Yup.string().required(),
+      image_url: Yup.string().required(),
     });
 
     if (!schema.isValid(request.body)) {
@@ -43,6 +51,8 @@ class FoodController {
     }
 
     const {
+      id,
+      image_url,
       description,
       ingredients,
       category,
@@ -53,6 +63,8 @@ class FoodController {
     });
 
     return response.status(201).json({
+      id,
+      image_url,
       title,
       description,
       ingredients,
@@ -64,6 +76,7 @@ class FoodController {
   async show(request, response) {
     const foods = await Food.findByPk(request.params.id, {
       attributes: [
+        'image_url',
         'title',
         'description',
         'ingredients',
@@ -129,7 +142,7 @@ class FoodController {
       ...request.body,
     });
 
-    return response.status(201).json({
+    return response.json({
       title,
       description,
       ingredients,
