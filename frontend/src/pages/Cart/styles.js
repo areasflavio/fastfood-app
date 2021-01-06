@@ -46,7 +46,9 @@ export const DishesList = styled.ul`
     div {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+
+      flex: 1;
+      margin: 0 8px;
 
       h3 {
         font-size: 32px;
@@ -59,8 +61,9 @@ export const DishesList = styled.ul`
       }
     }
 
-    h3 {
+    > h3 {
       color: #999;
+      /* align-self: flex-end; */
     }
   }
 
@@ -70,6 +73,8 @@ export const DishesList = styled.ul`
 
     border-radius: 8px;
     object-fit: cover;
+
+    margin-right: 8px;
   }
 `;
 
@@ -78,6 +83,8 @@ export const Controls = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+
+  max-width: 16px;
 
   button {
     background: #fff;

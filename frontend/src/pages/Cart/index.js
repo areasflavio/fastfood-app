@@ -1,11 +1,16 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { FiEdit3, FiPlusCircle, FiMinusCircle } from 'react-icons/fi';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { FiEdit3, FiPlusCircle, FiMinusCircle, FiTrash } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import Container from '../../components/Container';
 import { HeadDiv, DishesList, Controls, Footer } from './styles';
 
-function Cart() {
+import * as CartActions from '../../store/modules/cart/actions';
+
+function Cart({ cart, removeFromCart }) {
   return (
     <Container>
       <HeadDiv>
@@ -15,66 +20,28 @@ function Cart() {
         </Link>
       </HeadDiv>
       <DishesList>
-        <li>
-          <img
-            src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fHBpenphfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-            alt="food"
-          />
-          <div>
+        {cart.map((food) => (
+          <li key={food.id}>
             <Controls>
               <button type="button">
                 <FiPlusCircle size={12} />
               </button>
-              <h3>2</h3>
               <button type="button">
                 <FiMinusCircle size={12} />
               </button>
-            </Controls>
-            <small> X </small>
-            <strong>Pizza Marguerita</strong>
-          </div>
-          <h3>R$45,00</h3>
-        </li>
-        <li>
-          <img
-            src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fHBpenphfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-            alt="food"
-          />
-          <div>
-            <Controls>
-              <button type="button">
-                <FiPlusCircle size={12} />
-              </button>
-              <h3>2</h3>
-              <button type="button">
-                <FiMinusCircle size={12} />
+              <button type="button" onClick={() => removeFromCart(food.id)}>
+                <FiTrash size={12} />
               </button>
             </Controls>
-            <small> X </small>
-            <strong>Pizza Marguerita</strong>
-          </div>
-          <h3>R$45,00</h3>
-        </li>
-        <li>
-          <img
-            src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fHBpenphfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-            alt="food"
-          />
-          <div>
-            <Controls>
-              <button type="button">
-                <FiPlusCircle size={12} />
-              </button>
-              <h3>2</h3>
-              <button type="button">
-                <FiMinusCircle size={12} />
-              </button>
-            </Controls>
-            <small> X </small>
-            <strong>Pizza Marguerita</strong>
-          </div>
-          <h3>R$45,00</h3>
-        </li>
+            <div>
+              <img src={food.image_url} alt={food.title} />
+              <h3>{food.amount}</h3>
+              <small> X </small>
+              <strong>{food.title}</strong>
+            </div>
+            <h3>{food.priceFormatted}</h3>
+          </li>
+        ))}
       </DishesList>
       <Footer>
         <button type="button">Checkout</button>
@@ -87,4 +54,11 @@ function Cart() {
   );
 }
 
-export default Cart;
+const mapStateToProps = (state) => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

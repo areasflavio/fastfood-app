@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { FiStar, FiShoppingBag } from 'react-icons/fi';
 
@@ -7,6 +8,9 @@ import Container from '../../components/Container';
 import { DishesGrid, Title, Info } from './styles';
 
 import api from '../../services/api';
+import { formatPrice } from '../../utils/format';
+
+import * as CartActions from '../../store/modules/cart/actions';
 
 class Menu extends React.Component {
   constructor() {
@@ -19,16 +23,18 @@ class Menu extends React.Component {
   async componentDidMount() {
     const response = await api.get('/foods');
 
-    this.setState({ foods: response.data });
+    const data = response.data.map((food) => ({
+      ...food,
+      priceFormatted: formatPrice(food.price),
+    }));
+
+    this.setState({ foods: data });
   }
 
   handleAddFood = (food) => {
-    const { dispatch } = this.props;
+    const { addToCart } = this.props;
 
-    dispatch({
-      type: 'ADD_TO_CART',
-      food,
-    });
+    addToCart(food);
   };
 
   render() {
@@ -60,4 +66,7 @@ class Menu extends React.Component {
   }
 }
 
-export default connect()(Menu);
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(null, mapDispatchToProps)(Menu);
