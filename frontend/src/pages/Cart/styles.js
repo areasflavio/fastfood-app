@@ -1,6 +1,35 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
+export const EmptyCart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  strong {
+    color: #999;
+    font-size: 32px;
+    margin: 8px 0;
+  }
+
+  a {
+    background: #f7b90f;
+    border: none;
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    padding: 16px 64px;
+
+    transition: all 0.2s;
+
+    &:hover {
+      background: ${darken(0.03, '#f7b90f')};
+    }
+  }
+`;
+
 export const HeadDiv = styled.div`
   display: flex;
   align-items: center;
@@ -10,12 +39,12 @@ export const HeadDiv = styled.div`
 
   svg {
     margin-right: 8px;
-    color: #f7b90f;
+    color: #999;
 
     transition: color 0.2s;
 
     &:hover {
-      /* color: ${darken(0.03, '#f7b90f')}; */
+      color: #f7b90f;
     }
   }
 `;

@@ -59,9 +59,18 @@ export const Title = styled.div`
 export const Info = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  svg {
+    margin-right: 4px;
+  }
 
   small {
     margin-left: 4px;
     color: #999;
+  }
+
+  strong {
+    color: #f7b90f;
   }
 `;

@@ -2,15 +2,44 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { FiEdit3, FiPlusCircle, FiMinusCircle, FiTrash } from 'react-icons/fi';
+import {
+  FiEdit3,
+  FiPlusCircle,
+  FiMinusCircle,
+  FiTrash,
+  FiShoppingBag,
+} from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import Container from '../../components/Container';
-import { HeadDiv, DishesList, Controls, Footer } from './styles';
+import { HeadDiv, DishesList, Controls, Footer, EmptyCart } from './styles';
 
 import * as CartActions from '../../store/modules/cart/actions';
 
-function Cart({ cart, removeFromCart }) {
+import { formatPrice } from '../../utils/format';
+
+function Cart({ cart, total, removeFromCart, updateAmount }) {
+  function incrementAmount(food) {
+    updateAmount(food.id, food.amount + 1);
+  }
+
+  function decrementAmount(food) {
+    updateAmount(food.id, food.amount - 1);
+  }
+
+  if (cart.length === 0) {
+    return (
+      <Container>
+        <h2>My order</h2>
+        <FiShoppingBag size={128} color="#999" />
+        <EmptyCart>
+          <strong>You have not placed any order yet</strong>
+          <Link to="/menu">Look the menu</Link>
+        </EmptyCart>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <HeadDiv>
@@ -23,14 +52,14 @@ function Cart({ cart, removeFromCart }) {
         {cart.map((food) => (
           <li key={food.id}>
             <Controls>
-              <button type="button">
-                <FiPlusCircle size={12} />
+              <button type="button" onClick={() => incrementAmount(food)}>
+                <FiPlusCircle size={16} />
               </button>
-              <button type="button">
-                <FiMinusCircle size={12} />
+              <button type="button" onClick={() => decrementAmount(food)}>
+                <FiMinusCircle size={16} />
               </button>
               <button type="button" onClick={() => removeFromCart(food.id)}>
-                <FiTrash size={12} />
+                <FiTrash size={16} />
               </button>
             </Controls>
             <div>
@@ -39,7 +68,7 @@ function Cart({ cart, removeFromCart }) {
               <small> X </small>
               <strong>{food.title}</strong>
             </div>
-            <h3>{food.priceFormatted}</h3>
+            <h3>{food.subtotal}</h3>
           </li>
         ))}
       </DishesList>
@@ -47,7 +76,7 @@ function Cart({ cart, removeFromCart }) {
         <button type="button">Checkout</button>
         <div>
           <strong>Total Amount:</strong>
-          <h2>R$126,00</h2>
+          <h2>{total}</h2>
         </div>
       </Footer>
     </Container>
@@ -55,7 +84,13 @@ function Cart({ cart, removeFromCart }) {
 }
 
 const mapStateToProps = (state) => ({
-  cart: state.cart,
+  cart: state.cart.map((food) => ({
+    ...food,
+    subtotal: formatPrice(food.price * food.amount),
+  })),
+  total: formatPrice(
+    state.cart.reduce((total, food) => total + food.price * food.amount, 0)
+  ),
 });
 
 const mapDispatchToProps = (dispatch) =>

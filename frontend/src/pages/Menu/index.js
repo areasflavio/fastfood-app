@@ -31,14 +31,15 @@ class Menu extends React.Component {
     this.setState({ foods: data });
   }
 
-  handleAddFood = (food) => {
-    const { addToCart } = this.props;
+  handleAddFood = (id) => {
+    const { addToCartRequest } = this.props;
 
-    addToCart(food);
+    addToCartRequest(id);
   };
 
   render() {
     const { foods } = this.state;
+    const { cartAmount } = this.props;
 
     return (
       <Container>
@@ -49,14 +50,20 @@ class Menu extends React.Component {
               <img src={food.image_url} alt={food.title} />
               <Title>
                 <strong>{food.title}</strong>
-                <button type="button" onClick={() => this.handleAddFood(food)}>
-                  1 <FiShoppingBag size={16} />
+                <button
+                  type="button"
+                  onClick={() => this.handleAddFood(food.id)}
+                >
+                  {cartAmount[food.id]} <FiShoppingBag size={16} />
                 </button>
               </Title>
               <Info>
-                <FiStar size={12} color="#999" /> 4.0
-                <small>- {food.restaurant.name} </small>
-                <small>- {food.category} </small>
+                <div>
+                  <FiStar size={14} color="#999" /> 4.0
+                  <small>- {food.restaurant.name} </small>
+                  <small>- {food.category} </small>
+                </div>
+                <strong>{food.priceFormatted}</strong>
               </Info>
             </li>
           ))}
@@ -66,7 +73,15 @@ class Menu extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  cartAmount: state.cart.reduce((amount, food) => {
+    amount[food.id] = food.amount;
+
+    return amount;
+  }, {}),
+});
+
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(CartActions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);
