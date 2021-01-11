@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FiMenu, FiSearch, FiShoppingBag } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import { Container, MenuDiv, SearchInputDiv, UserDiv } from './styles';
 
-function Header({ cartSize }) {
+export default function Header() {
+  const cartSize = useSelector((state) => state.cart.lengt);
+
   return (
     <Container>
       <MenuDiv>
@@ -27,7 +29,3 @@ function Header({ cartSize }) {
     </Container>
   );
 }
-
-export default connect((state) => ({
-  cartSize: state.cart.length,
-}))(Header);
