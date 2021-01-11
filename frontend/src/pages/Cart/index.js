@@ -1,7 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   FiEdit3,
   FiPlusCircle,
@@ -18,13 +16,31 @@ import * as CartActions from '../../store/modules/cart/actions';
 
 import { formatPrice } from '../../utils/format';
 
-function Cart({ cart, total, removeFromCart, updateAmount }) {
+export default function Cart() {
+  const cart = useSelector((state) =>
+    state.cart.map((food) => ({
+      ...food,
+      subtotal: formatPrice(food.price * food.amount),
+    }))
+  );
+
+  const total = useSelector((state) =>
+    formatPrice(
+      state.cart.reduce(
+        (totalSum, food) => totalSum + food.price * food.amount,
+        0
+      )
+    )
+  );
+
+  const dispatch = useDispatch();
+
   function incrementAmount(food) {
-    updateAmount(food.id, food.amount + 1);
+    dispatch(CartActions.updateAmount(food.id, food.amount + 1));
   }
 
   function decrementAmount(food) {
-    updateAmount(food.id, food.amount - 1);
+    dispatch(CartActions.updateAmount(food.id, food.amount - 1));
   }
 
   if (cart.length === 0) {
@@ -58,7 +74,10 @@ function Cart({ cart, total, removeFromCart, updateAmount }) {
               <button type="button" onClick={() => decrementAmount(food)}>
                 <FiMinusCircle size={16} />
               </button>
-              <button type="button" onClick={() => removeFromCart(food.id)}>
+              <button
+                type="button"
+                onClick={() => dispatch(CartActions.removeFromCart(food.id))}
+              >
                 <FiTrash size={16} />
               </button>
             </Controls>
@@ -82,18 +101,3 @@ function Cart({ cart, total, removeFromCart, updateAmount }) {
     </Container>
   );
 }
-
-const mapStateToProps = (state) => ({
-  cart: state.cart.map((food) => ({
-    ...food,
-    subtotal: formatPrice(food.price * food.amount),
-  })),
-  total: formatPrice(
-    state.cart.reduce((total, food) => total + food.price * food.amount, 0)
-  ),
-});
-
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(CartActions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
