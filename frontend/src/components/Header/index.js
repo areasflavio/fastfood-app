@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { FiMenu, FiSearch, FiShoppingBag } from 'react-icons/fi';
@@ -7,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Container, MenuDiv, SearchInputDiv, UserDiv } from './styles';
 
 export default function Header() {
-  const cartSize = useSelector((state) => state.cart.lengt);
+  const cartSize = useSelector((state) => state.cart.length);
 
   return (
     <Container>

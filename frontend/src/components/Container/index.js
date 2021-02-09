@@ -6,7 +6,7 @@ const Container = styled.div`
   align-items: center;
   /* justify-content: center; */
 
-  padding: 16px;
+  padding: 24px;
 
   background: #ffffff;
   max-width: 96%;
