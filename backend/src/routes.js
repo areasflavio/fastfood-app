@@ -13,11 +13,11 @@ routes.get('/foods/:id', FoodController.show);
 
 routes.post('/sessions', SessionController.store);
 
+routes.get('/restaurants', RestaurantController.index);
 routes.post('/restaurants', RestaurantController.store);
 
 routes.use(authMiddleware);
 
-routes.get('/restaurants', RestaurantController.index);
 routes.put('/restaurants', RestaurantController.update);
 
 routes.post('/foods', FoodController.store);

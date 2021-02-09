@@ -6,7 +6,9 @@ class RestaurantController {
   async index(request, response) {
     const restaurants = await Restaurant.findAll({
       attributes: [
+        'id',
         'name',
+        'image_url',
         'email',
         'street',
         'number',

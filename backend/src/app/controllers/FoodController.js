@@ -78,6 +78,7 @@ class FoodController {
   async show(request, response) {
     const foods = await Food.findByPk(request.params.id, {
       attributes: [
+        'id',
         'image_url',
         'title',
         'description',
