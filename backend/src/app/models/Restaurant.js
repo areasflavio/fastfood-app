@@ -6,6 +6,7 @@ class Restaurant extends Model {
     super.init(
       {
         name: Sequelize.STRING,
+        image_url: Sequelize.STRING,
         email: Sequelize.STRING,
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,

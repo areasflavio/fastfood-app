@@ -24,6 +24,7 @@ class RestaurantController {
   async store(request, response) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
+      image_url: Yup.string().required(),
       email: Yup.string().email().required(),
       street: Yup.string().required(),
       number: Yup.number().required(),
@@ -47,6 +48,7 @@ class RestaurantController {
     }
 
     const {
+      image_url,
       email,
       street,
       number,
@@ -57,6 +59,7 @@ class RestaurantController {
 
     return response.status(201).json({
       name,
+      image_url,
       email,
       street,
       number,
