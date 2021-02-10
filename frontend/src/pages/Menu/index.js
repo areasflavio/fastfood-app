@@ -62,8 +62,8 @@ export default function Menu() {
               <Info>
                 <div>
                   <FiStar size={14} color="#999" /> 4.0
-                  <small>- {food.restaurant.name} </small>
-                  <small>- {food.category} </small>
+                  <small>{food.restaurant.name}</small>
+                  <small>{food.category}</small>
                 </div>
                 <strong>{food.priceFormatted}</strong>
               </Info>

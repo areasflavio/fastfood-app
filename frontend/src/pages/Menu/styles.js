@@ -61,13 +61,35 @@ export const Info = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  svg {
-    margin-right: 4px;
-  }
+  div {
+    display: flex;
+    align-items: center;
 
-  small {
-    margin-left: 4px;
-    color: #999;
+    margin-top: 4px;
+
+    svg {
+      margin-right: 4px;
+    }
+
+    small {
+      margin-left: 4px;
+      color: #999;
+      position: relative;
+
+      padding-left: 14px;
+
+      &::before {
+        content: '';
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        margin-left: 5px;
+        background: #999;
+        position: absolute;
+        left: 0px;
+        top: 6px;
+      }
+    }
   }
 
   strong {
