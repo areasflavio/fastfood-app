@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 
 import Container from '../../components/Container';
-import { Panel, PopularRestaurants, Info } from './styles';
+import { Panel, PopularRestaurants, Info, Location } from './styles';
 
 export default function Menu() {
   const [restaurants, setRestaurants] = useState([]);
@@ -29,96 +29,16 @@ export default function Menu() {
 
       <PopularRestaurants>
         {restaurants.map((restaurant) => (
-          <>
-            <li key={restaurant.id}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
+          <li key={restaurant.id}>
+            <img src={restaurant.image_url} alt={restaurant.name} />
+            <Info>
+              <strong>{restaurant.name}</strong>
+              <Location>
                 <small>{restaurant.city} </small>
                 <small>{restaurant.state} </small>
-              </Info>
-            </li>
-            <li key={restaurant.id + 1}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Info>
-            </li>
-            <li key={restaurant.id + 2}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Info>
-            </li>
-            <li key={restaurant.id + 3}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Info>
-            </li>
-            <li key={restaurant.id + 4}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Info>
-            </li>
-            <li key={restaurant.id + 5}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Info>
-            </li>
-            <li key={restaurant.id + 6}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Info>
-            </li>
-            <li key={restaurant.id + 7}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Info>
-            </li>
-            <li key={restaurant.id + 8}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Info>
-            </li>
-            <li key={restaurant.id + 9}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Info>
-            </li>
-            <li key={restaurant.id + 10}>
-              <img src={restaurant.image_url} alt={restaurant.name} />
-              <Info>
-                <strong>{restaurant.name}</strong>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Info>
-            </li>
-          </>
+              </Location>
+            </Info>
+          </li>
         ))}
       </PopularRestaurants>
     </Container>

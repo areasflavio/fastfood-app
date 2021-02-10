@@ -37,12 +37,15 @@ export const PopularRestaurants = styled.ul`
   flex-wrap: wrap;
   list-style: none;
 
+  justify-content: space-between;
+
   li {
     display: flex;
+    flex-direction: column;
+    margin-top: 16px;
 
     img {
-      width: 100%;
-      width: 128px;
+      width: 192px;
       height: 128px;
       object-fit: cover;
 
@@ -57,6 +60,35 @@ export const PopularRestaurants = styled.ul`
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  margin-top: 4px;
+`;
+
+export const Location = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 
   color: #999;
+
+  small {
+    position: relative;
+  }
+
+  small:last-child {
+    padding-left: 14px;
+  }
+
+  small:last-child::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    margin-left: 5px;
+    background: #999;
+    position: absolute;
+    right: 21px;
+    top: 5px;
+  }
 `;
