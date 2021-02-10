@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import Popup from 'reactjs-popup';
 
 export const Container = styled.div`
   display: flex;
@@ -22,13 +23,70 @@ export const MenuDiv = styled.div`
   justify-content: flex-start;
 
   font-size: 24px;
+  min-width: 220px;
 
-  svg {
+  button {
+    border: none;
+    background: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     margin-right: 16px;
   }
 
   strong {
     margin-right: 4px;
+  }
+`;
+
+export const StyledPopup = styled(Popup)`
+  &-overlay {
+    // use your custom style for ".popup-overlay"
+  }
+  &-arrow {
+    color: #fef5da;
+  }
+  &-content {
+    // use your custom style for ".popup-content"
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: #fef5da;
+    box-shadow: 0px 0px 2px #f7b90f26;
+
+    min-width: 150px;
+    max-width: 180px;
+
+    padding: 8px;
+    border-radius: 8px;
+
+    a {
+      text-decoration: none;
+      background: inherit;
+
+      color: #f7b90f;
+      font-size: 16px;
+      font-weight: bold;
+
+      display: flex;
+      justify-content: flex-start;
+
+      min-width: 100%;
+      padding: 4px 2px;
+
+      transition: background 0.2s;
+
+      & + button {
+        border-top: 1px solid ${darken(0.06, '#fef5da')};
+      }
+
+      &:hover {
+        background: ${darken(0.06, '#fef5da')};
+      }
+    }
   }
 `;
 

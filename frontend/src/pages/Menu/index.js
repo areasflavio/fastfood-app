@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FiStar, FiShoppingBag } from 'react-icons/fi';
 
+import Header from '../../components/Header';
 import Container from '../../components/Container';
 import { DishesGrid, Title, Info } from './styles';
 
@@ -43,29 +44,33 @@ export default function Menu() {
   }
 
   return (
-    <Container>
-      <h2>Popular dishes</h2>
-      <DishesGrid>
-        {foods.map((food) => (
-          <li key={food.id}>
-            <img src={food.image_url} alt={food.title} />
-            <Title>
-              <strong>{food.title}</strong>
-              <button type="button" onClick={() => handleAddFood(food.id)}>
-                {cartAmount[food.id]} <FiShoppingBag size={16} />
-              </button>
-            </Title>
-            <Info>
-              <div>
-                <FiStar size={14} color="#999" /> 4.0
-                <small>- {food.restaurant.name} </small>
-                <small>- {food.category} </small>
-              </div>
-              <strong>{food.priceFormatted}</strong>
-            </Info>
-          </li>
-        ))}
-      </DishesGrid>
-    </Container>
+    <>
+      <Header title={['Order', 'something']} />
+
+      <Container>
+        <h2>Popular dishes</h2>
+        <DishesGrid>
+          {foods.map((food) => (
+            <li key={food.id}>
+              <img src={food.image_url} alt={food.title} />
+              <Title>
+                <strong>{food.title}</strong>
+                <button type="button" onClick={() => handleAddFood(food.id)}>
+                  {cartAmount[food.id]} <FiShoppingBag size={16} />
+                </button>
+              </Title>
+              <Info>
+                <div>
+                  <FiStar size={14} color="#999" /> 4.0
+                  <small>- {food.restaurant.name} </small>
+                  <small>- {food.category} </small>
+                </div>
+                <strong>{food.priceFormatted}</strong>
+              </Info>
+            </li>
+          ))}
+        </DishesGrid>
+      </Container>
+    </>
   );
 }

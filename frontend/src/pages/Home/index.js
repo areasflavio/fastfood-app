@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import api from '../../services/api';
 
+import Header from '../../components/Header';
 import Container from '../../components/Container';
 import { Panel, PopularRestaurants, Info, Location } from './styles';
 
@@ -19,28 +20,32 @@ export default function Menu() {
   }, []);
 
   return (
-    <Container>
-      <Panel>
-        <h1>Order with FASTFOOD APP</h1>
-        <p>We provide super-fast delivery or pick-up</p>
-      </Panel>
+    <>
+      <Header title={['Main', 'page']} />
 
-      <h2>Popular restaurants</h2>
+      <Container>
+        <Panel>
+          <h1>Order with FASTFOOD APP</h1>
+          <p>We provide super-fast delivery or pick-up</p>
+        </Panel>
 
-      <PopularRestaurants>
-        {restaurants.map((restaurant) => (
-          <li key={restaurant.id}>
-            <img src={restaurant.image_url} alt={restaurant.name} />
-            <Info>
-              <strong>{restaurant.name}</strong>
-              <Location>
-                <small>{restaurant.city} </small>
-                <small>{restaurant.state} </small>
-              </Location>
-            </Info>
-          </li>
-        ))}
-      </PopularRestaurants>
-    </Container>
+        <h2>Popular restaurants</h2>
+
+        <PopularRestaurants>
+          {restaurants.map((restaurant) => (
+            <li key={restaurant.id}>
+              <img src={restaurant.image_url} alt={restaurant.name} />
+              <Info>
+                <strong>{restaurant.name}</strong>
+                <Location>
+                  <small>{restaurant.city} </small>
+                  <small>{restaurant.state} </small>
+                </Location>
+              </Info>
+            </li>
+          ))}
+        </PopularRestaurants>
+      </Container>
+    </>
   );
 }

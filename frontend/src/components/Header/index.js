@@ -2,21 +2,40 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { FiMenu, FiSearch, FiShoppingBag } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import { Container, MenuDiv, SearchInputDiv, UserDiv } from './styles';
+import {
+  Container,
+  MenuDiv,
+  StyledPopup,
+  SearchInputDiv,
+  UserDiv,
+} from './styles';
 
-export default function Header() {
+export default function Header({ title }) {
   const cartSize = useSelector((state) => state.cart.length);
 
   return (
     <Container>
       <MenuDiv>
-        <FiMenu size={24} color="#000" />
-        <strong>Order</strong>
-        something
+        <StyledPopup
+          trigger={
+            <button className="button" type="button">
+              <FiMenu size={24} color="#000" />
+            </button>
+          }
+          position="bottom center"
+          closeOnDocumentClick
+        >
+          <Link to="/">Home</Link>
+          <Link to="/menu">Menu</Link>
+          <Link to="/cart">Cart</Link>
+        </StyledPopup>
+        <strong>{title[0]}</strong>
+        {title[1]}
       </MenuDiv>
       <SearchInputDiv>
-        <input placeholder="Search" />
+        <input placeholder="Search" readOnly />
         <FiSearch size={16} color="#F7B90F" />
       </SearchInputDiv>
       <UserDiv>
@@ -28,3 +47,7 @@ export default function Header() {
     </Container>
   );
 }
+
+Header.propTypes = {
+  title: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
