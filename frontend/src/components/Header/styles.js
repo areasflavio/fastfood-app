@@ -34,6 +34,14 @@ export const MenuDiv = styled.div`
     justify-content: center;
 
     margin-right: 16px;
+
+    svg {
+      color: #000;
+
+      &:hover {
+        color: #f7b90f;
+      }
+    }
   }
 
   strong {

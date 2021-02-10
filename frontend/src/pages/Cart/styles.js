@@ -6,6 +6,11 @@ export const EmptyCart = styled.div`
   flex-direction: column;
   align-items: center;
 
+  h3 {
+    color: #999;
+    font-size: 64px;
+  }
+
   strong {
     color: #999;
     font-size: 32px;
@@ -21,6 +26,8 @@ export const EmptyCart = styled.div`
     font-weight: bold;
     color: #fff;
     padding: 16px 64px;
+
+    margin-top: 32px;
 
     transition: all 0.2s;
 

@@ -1,12 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  FiEdit3,
-  FiPlusCircle,
-  FiMinusCircle,
-  FiTrash,
-  FiShoppingBag,
-} from 'react-icons/fi';
+import { FiEdit3, FiPlusCircle, FiMinusCircle, FiTrash } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 import Header from '../../components/Header';
@@ -51,8 +45,8 @@ export default function Cart() {
       {cart.length === 0 ? (
         <Container>
           <h2>My order</h2>
-          <FiShoppingBag size={128} color="#999" />
           <EmptyCart>
+            <h3>Oops...</h3>
             <strong>You have not placed any order yet</strong>
             <Link to="/menu">Look the menu</Link>
           </EmptyCart>

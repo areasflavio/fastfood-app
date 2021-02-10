@@ -21,10 +21,10 @@ export default function Header({ title }) {
         <StyledPopup
           trigger={
             <button className="button" type="button">
-              <FiMenu size={24} color="#000" />
+              <FiMenu size={24} />
             </button>
           }
-          position="bottom center"
+          position="right top"
           closeOnDocumentClick
         >
           <Link to="/">Home</Link>
