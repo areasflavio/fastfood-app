@@ -5,10 +5,10 @@ class Food extends Model {
     super.init(
       {
         title: Sequelize.STRING,
+        image_url: Sequelize.STRING,
         description: Sequelize.STRING,
         ingredients: Sequelize.STRING,
         category: Sequelize.STRING,
-        image_url: Sequelize.STRING,
       },
       {
         sequelize,

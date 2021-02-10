@@ -72,12 +72,13 @@ class RestaurantController {
   async update(request, response) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
+      image_url: Yup.string().required(),
       email: Yup.string().email().required(),
       street: Yup.string().required(),
       number: Yup.number().required(),
       neighborhood: Yup.string().required(),
       city: Yup.string().required(),
-      state: Yup.string().required('estado').max(2),
+      state: Yup.string().required().max(2),
     });
 
     if (!schema.isValid(request.body)) {
@@ -86,7 +87,7 @@ class RestaurantController {
 
     const { email, oldPassword } = request.body;
 
-    const restaurant = await Restaurant.findByPk(request.restaurantId);
+    const restaurant = await Restaurant.findByPk(request.params.id);
 
     if (restaurant.email !== email) {
       const restaurantExists = await Restaurant.findOne({
@@ -107,6 +108,7 @@ class RestaurantController {
     const {
       id,
       name,
+      image_url,
       street,
       number,
       neighborhood,
@@ -117,6 +119,7 @@ class RestaurantController {
     return response.json({
       id,
       name,
+      image_url,
       email,
       street,
       number,
@@ -124,6 +127,12 @@ class RestaurantController {
       city,
       state,
     });
+  }
+
+  async delete(request, response) {
+    await Restaurant.findByPk(request.params.id);
+
+    return response.json();
   }
 }
 
