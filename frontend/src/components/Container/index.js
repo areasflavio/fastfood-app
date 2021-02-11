@@ -16,6 +16,10 @@ const Container = styled.div`
 
   h2 {
     align-self: flex-start;
+
+    @media (max-width: 514px) {
+      align-self: center;
+    }
   }
 `;
 

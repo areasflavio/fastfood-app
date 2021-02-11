@@ -9,6 +9,10 @@ export const Panel = styled.div`
   width: 100%;
   min-height: 256px;
 
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+
   background: rgb(205, 238, 222);
   background: linear-gradient(
     45deg,
@@ -16,9 +20,6 @@ export const Panel = styled.div`
     rgba(235, 248, 242, 1) 50%,
     rgba(226, 245, 236, 1) 100%
   );
-
-  border-radius: 8px;
-  margin-bottom: 24px;
 
   h1 {
     color: #303e5c;
@@ -32,24 +33,23 @@ export const Panel = styled.div`
 `;
 
 export const PopularRestaurants = styled.ul`
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  list-style: none;
+  width: 100%;
+  margin: 0;
 
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
+  grid-gap: 24px;
 
   li {
     display: flex;
     flex-direction: column;
     margin-top: 16px;
 
-    & + li {
-      margin-left: 24px;
-    }
+    flex: 1;
 
     img {
-      width: 192px;
+      width: 100%;
+      min-width: 192px;
       height: 128px;
       object-fit: cover;
 
@@ -59,12 +59,21 @@ export const PopularRestaurants = styled.ul`
       align-self: center;
     }
   }
+
+  @media (max-width: 964px) {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  @media (max-width: 362px) {
+    grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
+  }
 `;
 
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   margin-top: 4px;
 `;
@@ -78,7 +87,10 @@ export const Location = styled.div`
 
   small {
     position: relative;
-    padding-left: 14px;
+
+    &:last-child {
+      padding-left: 14px;
+    }
 
     &:last-child::before {
       content: '';

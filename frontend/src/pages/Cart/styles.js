@@ -34,6 +34,14 @@ export const EmptyCart = styled.div`
     &:hover {
       background: ${darken(0.03, '#f7b90f')};
     }
+
+    @media (max-width: 373px) {
+      padding: 16px 48px;
+    }
+  }
+
+  @media (max-width: 375px) {
+    padding: 0px 22px;
   }
 `;
 
@@ -79,7 +87,7 @@ export const DishesList = styled.ul`
       border-top: 4px dotted #f0f0f0;
     }
 
-    div {
+    section {
       display: flex;
       align-items: center;
 
@@ -95,22 +103,39 @@ export const DishesList = styled.ul`
         color: #999;
         margin: 0 8px;
       }
+
+      @media (max-width: 560px) {
+        justify-content: center;
+        width: 100%;
+      }
     }
 
     > h3 {
       color: #999;
-      /* align-self: flex-end; */
     }
-  }
 
-  img {
-    width: 128px;
-    height: 64px;
+    img {
+      width: 128px;
+      height: 64px;
 
-    border-radius: 8px;
-    object-fit: cover;
+      border-radius: 8px;
+      object-fit: cover;
 
-    margin-right: 8px;
+      @media (max-width: 560px) {
+        width: 256px;
+        height: 128px;
+        margin: 8px 0;
+      }
+
+      @media (max-width: 374px) {
+        width: 220px;
+        height: 110px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      flex-direction: column;
+    }
   }
 `;
 
@@ -121,6 +146,7 @@ export const Controls = styled.div`
   justify-content: space-between;
 
   max-width: 16px;
+  margin-right: 8px;
 
   button {
     background: #fff;
@@ -146,6 +172,9 @@ export const Footer = styled.footer`
   padding: 8px 0;
 
   button {
+    display: flex;
+    justify-content: center;
+
     background: #0aaf60;
     border: none;
     border-radius: 8px;
@@ -158,6 +187,11 @@ export const Footer = styled.footer`
 
     &:hover {
       background: ${darken(0.03, '#0aaf60')};
+    }
+
+    @media (max-width: 560px) {
+      order: 1;
+      width: 100%;
     }
   }
 
@@ -173,5 +207,14 @@ export const Footer = styled.footer`
     h2 {
       font-size: 32px;
     }
+
+    @media (max-width: 560px) {
+      margin: 8px 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    flex-direction: column;
+    align-items: center;
   }
 `;

@@ -31,8 +31,10 @@ export default function Header({ title }) {
           <Link to="/menu">Menu</Link>
           <Link to="/cart">Cart</Link>
         </StyledPopup>
-        <strong>{title[0]}</strong>
-        {title[1]}
+        <div>
+          <strong>{title[0]}</strong>
+          {title[1]}
+        </div>
       </MenuDiv>
       <SearchInputDiv>
         <input placeholder="Search" readOnly />

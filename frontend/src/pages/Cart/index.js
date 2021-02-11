@@ -62,28 +62,31 @@ export default function Cart() {
           <DishesList>
             {cart.map((food) => (
               <li key={food.id}>
-                <Controls>
-                  <button type="button" onClick={() => incrementAmount(food)}>
-                    <FiPlusCircle size={16} />
-                  </button>
-                  <button type="button" onClick={() => decrementAmount(food)}>
-                    <FiMinusCircle size={16} />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      dispatch(CartActions.removeFromCart(food.id))
-                    }
-                  >
-                    <FiTrash size={16} />
-                  </button>
-                </Controls>
-                <div>
-                  <img src={food.image_url} alt={food.title} />
+                <img src={food.image_url} alt={food.title} />
+
+                <section>
+                  <Controls>
+                    <button type="button" onClick={() => incrementAmount(food)}>
+                      <FiPlusCircle size={16} />
+                    </button>
+                    <button type="button" onClick={() => decrementAmount(food)}>
+                      <FiMinusCircle size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        dispatch(CartActions.removeFromCart(food.id))
+                      }
+                    >
+                      <FiTrash size={16} />
+                    </button>
+                  </Controls>
+
                   <h3>{food.amount}</h3>
                   <small> X </small>
                   <strong>{food.title}</strong>
-                </div>
+                </section>
+
                 <h3>{food.subtotal}</h3>
               </li>
             ))}

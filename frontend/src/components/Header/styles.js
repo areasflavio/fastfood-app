@@ -23,7 +23,7 @@ export const MenuDiv = styled.div`
   justify-content: flex-start;
 
   font-size: 24px;
-  min-width: 220px;
+  /* min-width: 220px; */
 
   button {
     border: none;
@@ -44,8 +44,14 @@ export const MenuDiv = styled.div`
     }
   }
 
-  strong {
-    margin-right: 4px;
+  div {
+    strong {
+      margin-right: 4px;
+    }
+
+    @media (max-width: 736px) {
+      display: none;
+    }
   }
 `;
 
@@ -114,6 +120,18 @@ export const SearchInputDiv = styled.div`
     flex: 1;
     border: none;
     background: #fafaf7;
+
+    @media (max-width: 420px) {
+      display: none;
+    }
+  }
+
+  svg {
+    cursor: pointer;
+  }
+
+  @media (max-width: 550px) {
+    margin: 0;
   }
 `;
 

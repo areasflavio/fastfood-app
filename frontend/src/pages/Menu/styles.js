@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const DishesGrid = styled.ul`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(276px, 1fr));
   grid-gap: 24px;
 
   margin: 16px auto;
@@ -24,6 +24,10 @@ export const DishesGrid = styled.ul`
 
       align-self: center;
     }
+  }
+
+  @media (max-width: 397px) {
+    grid-template-columns: repeat(auto-fit, minmax(192px, 1fr));
   }
 `;
 
@@ -94,5 +98,9 @@ export const Info = styled.div`
 
   strong {
     color: #f7b90f;
+  }
+
+  @media (max-width: 425px) {
+    flex-direction: column;
   }
 `;
